@@ -228,6 +228,6 @@ $file = fopen("voto.txt", "w");
 foreach($classe as $stud)
     {
         $line = = array_keys($studente).".".implode(",", $stud).PHP_EOL;
-        fwrite($file,$line);
+        fwrite($file,$line);//File grandi, in alternativa, usare file_put_contents()
     }
 
