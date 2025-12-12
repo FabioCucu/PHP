@@ -223,3 +223,11 @@ foreach($classe as $stud)
         fwrite($file,$line);
     }
 fclose($file);
+
+$file = fopen("voto.txt", "w");
+foreach($classe as $stud)
+    {
+        $line = = array_keys($studente).".".implode(",", $stud).PHP_EOL;
+        fwrite($file,$line);
+    }
+
