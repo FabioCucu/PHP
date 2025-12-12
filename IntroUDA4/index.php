@@ -204,3 +204,22 @@ if (empty($var5))
 else
     echo "Var 5 NON è vuota";
 echo "<br>";
+
+// ============================ Scrittura su file ============================
+
+$classe = [
+    "studente1"=>["nome1","cognome1",1],
+    "studente2"=>["nome2","cognome2",2],
+    "studente3"=>["nome3","cognome3",3],
+    "studente4"=>["nome4","cognome4",4],
+    "studente5"=>["nome5","cognome5",5],
+    "studente6"=>["nome6","cognome6",6],
+];
+
+$file = fopen("voto.txt", "w");
+foreach($classe as $stud)
+    {
+        $line = implode(",", $stud).PHP_EOL;
+        fwrite($file,$line);
+    }
+fclose($file);
