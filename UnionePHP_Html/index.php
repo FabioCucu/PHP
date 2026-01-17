@@ -1,6 +1,6 @@
 <?php
 // Server-Side (PHP)
-$Stringa = "The moon is red tonight. You shall know death. - (By Remilia)";
+$Stringa = "The moon is red tonight. You shall know death. - (Remilia)";
 
 $SDM = ["Remilia Scarlet", "Flandre Scarlet", "Sakuya Izayoi", "Patchouli Knowledge", "Hong Meiling"];
 $Scarlet = "A vampire who is the head of the Scarlet Devil Mansion.";
@@ -11,24 +11,34 @@ $Meiling = "A Youkai who serves as the gatekeeper of the Scarlet Devil Mansion."
 $msg = "Touhou best game.";
 
 $Data = [
-
-        "Data1" => [
+    [
         "Name" => "Remilia",
         "Surname" => "Scarlet",
         "Age" => "500+"
     ],
-        "Data2" => [
+    [
         "Name" => "Flandre",
         "Surname" => "Scarlet",
         "Age" => "495+"
     ],
-        "Data3" => [
+    [
         "Name" => "Sakuya",
         "Surname" => "Izayoi",
         "Age" => "Unknown"
-    ]];
+    ],
+    [
+        "Name" => "Patchouli",
+        "Surname" => "Knowledge",
+        "Age" => "Around 100"
+    ],
+    [
+        "Name" => "Hong",
+        "Surname" => "Meiling",
+        "Age" => "Less than 100"
+    ]
+];
 
-$keys = array_keys($Data);
+$keys = array_keys($Data[0]);
 
 ?>
 
@@ -43,58 +53,67 @@ $keys = array_keys($Data);
     <title>Document</title>
 </head>
 <body>
-    <p>Ciao</p>
-    <p>==================================== Echo ====================================</p>
-    <p><?php echo $Stringa ?></p>
-    <p>================================ Echo compatto =================================</p>
-    <p><?=$Stringa?></p>
+<p>Ciao</p>
+<p>==================================== Echo ====================================</p>
+<p><?php echo $Stringa ?></p>
+<p>================================ Echo Compatto =================================</p>
+<p><?= $Stringa ?></p>
+<!-- La forma compatta può essere usata quando bisogna visualizzare UNA variabile singola. -->
+<!-- Il SERVER esegue le parti php ed al html viene "iniettato" solo il risultato. -->
+<p>========================== Scarlet Devil Mansion - Members ==========================</p>
+<?php
+foreach ($SDM as $item) :
+    ?>
+    <!-- Il foreach, come altre tali istruzioni, non vanno inserite in un tag html siccome non danno alcun risultato.
+    Se inserite, risulteranno nell'apparizione di un tag vuoto. -->
+    <p><?= $item ?></p>
+    <?php if ($item == "Remilia Scarlet" || $item == "Flandre Scarlet") : ?>
+    <p><?= $Scarlet ?></p>
+<?php elseif ($item == "Sakuya Izayoi"): ?>
+    <p><?= $Izayoi ?></p>
+<?php elseif ($item == "Patchouli Knowledge"): ?>
+    <p><?= $Knowledge ?></p>
+<?php elseif ($item == "Hong Meiling"): ?>
+    <p><?= $Meiling ?></p>
+<?php endif; ?>
+    <hr>
+<?php endforeach; ?>
 
-    <p>================================ Scarlet Devil Mansion members =================================</p>
+<table>
     <?php
-        foreach ($SDM as $item) :
-    ?>
-    <p><?=$item?></p>
-            <?php
-            if ($item == "Remilia Scarlet" || $item == "Flandre Scarlet") :
-                ?>
-                <p><?=$Scarlet?></p>
-            <?php elseif ($item == "Sakuya Izayoi"):?>
-                <p><?=$Izayoi?></p>
-            <?php elseif ($item == "Patchouli Knowledge"):?>
-                <p><?=$Knowledge?></p>
-            <?php elseif ($item == "Hong Meiling"):?>
-                <p><?=$Meiling?></p>
-            <?php endif;?>
-            <hr>
-        <?php
-        endforeach;
-    ?>
+    foreach ($keys as $key):
+        ?>
+        <th><?= $key ?></th>
+    <?php endforeach;
+    foreach ($Data as $item) :
+        ?>
+        <!--<tr>
+            <td><?= $item["Name"] ?></td>
+            <td><?= $item["Surname"] ?></td>
+            <td><?= $item["Age"] ?></td>
+        </tr>-->
+        <tr>
+            <?php foreach ($item as $value): ?>
+                <td><?= $value ?></td>
+            <?php endforeach; ?>
+        </tr>
+    <?php endforeach; ?>
+</table>
 
-    <table>
-        <tr>
-            <td><?=$keys[0] ?></td>
-            <td><?=$keys[1] ?></td>
-            <td><?=$keys[2] ?></td>
-        </tr>
-        <tr>
-            <td><?=$Data[0][0] ?></td>
-            <td><?=$Data[0][1] ?></td>
-            <td><?=$Data[0][2] ?></td>
-        </tr>
-        <tr>
-            <td><?=$Data[1][0] ?></td>
-            <td><?=$Data[1][1] ?></td>
-            <td><?=$Data[1][2] ?></td>
-        </tr>
-        <tr>
-            <td><?=$Data[2][0] ?></td>
-            <td><?=$Data[2][1] ?></td>
-            <td><?=$Data[2][2] ?></td>
-        </tr>
-    </table>
-
-    <button id="myButton">ToDo</button>
-    <script> const message=<?=json_encode($msg)?> </script>
-    <script src="script.js"></script>
+<!--<?php
+$i = 1;
+while ($i <= 50):?>
+    <?php
+    echo $i;
+    $i = $i + 1;
+endwhile;
+?>-->
+<button id="myButton">ToDo</button>
+<script> const message = <?=json_encode($msg)?> </script>
+<!-- json_encode trasforma il contenuto che stiamo inviando in un formato json, rendendo possibile al javascript di ottenere dei dati dal php -->
+<script src="script.js"></script>
 </body>
+<footer>
+    <p>&copy; 2026 Il Tuo Sito. Tutti i diritti riservati. | <a href="#" style="color: white; text-decoration: underline;">Privacy Policy</a> | <a href="#" style="color: white; text-decoration: underline;">Termini di Servizio</a></p>
+</footer>
 </html>
