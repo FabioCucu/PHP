@@ -1,9 +1,9 @@
 <?php
 
+require "DataBaseConn.php";
 $dbconfig = require "Configuration/DBConf.php";
 
-$db = new PDO( $dbconfig["dsn"], $dbconfig["username"], $dbconfig["password"], $dbconfig["options"]);
-
+$db = DataBaseConn::getDB($dbconfig);
 // READ 1
 
 echo "<h1>READ GENERALE</h1>";
