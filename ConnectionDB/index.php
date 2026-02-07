@@ -1,14 +1,8 @@
 <?php
 
-$db = new PDO(
-    "mysql:host=192.168.60.144;dbname=fabio_cucu_itis;charset=utf8mb4",
-    "fabio_cucu",
-    "attiva.agonizzare.",
-    [
-        PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-        PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-    ]
-);
+$dbconfig = require "DBConf.php";
+
+$db = new PDO( $dbconfig["dsn"], $dbconfig["username"], $dbconfig["password"], $dbconfig["options"]);
 
 // READ 1
 
