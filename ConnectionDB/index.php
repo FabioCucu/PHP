@@ -1,6 +1,6 @@
 <?php
 
-$dbconfig = require "DBConf.php";
+$dbconfig = require "Configuration/DBConf.php";
 
 $db = new PDO( $dbconfig["dsn"], $dbconfig["username"], $dbconfig["password"], $dbconfig["options"]);
 
