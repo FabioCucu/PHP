@@ -4,6 +4,12 @@ require "DataBaseConn.php";
 $dbconfig = require "Configuration/DBConf.php";
 
 $db = DataBaseConn::getDB($dbconfig);
+
+if (!isset($db))
+{
+    exit("Errore database");
+}
+
 // READ 1
 
 echo "<h1>READ GENERALE</h1>";
